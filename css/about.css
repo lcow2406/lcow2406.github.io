@@ -1,0 +1,495 @@
+/* Styles for about.html */
+
+@media (max-width: 767px) {
+
+body, header, nav, main, footer, footer p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* Including other appropriate styles. Experiment and be creative */
+
+/* Additional styles */
+
+/* Set the background color for the website */
+body {
+    background-color: #f0f0f0; /* Light gray background */
+}
+
+/* Style the container element to set the width of the page and center the page */
+#main-container {
+    max-width: 100%; /* Set the width of the container */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Style the header element */
+header {
+    background-color: #333; /* Dark background color */
+    margin-top: 20px; /* Add top margin */
+    margin-bottom: 20px; /* Add bottom margin */
+    border-radius: 10px; /* Rounded borders */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    text-align: center; /* Center text */
+}
+
+/* Style the nav element */
+.nav {
+    text-align: center; /* Center text */
+    padding: 5px 10px; /* Add padding */
+    margin: 5px 0; /* Add margins */
+    border: 1px solid #ddd; /* Add borders */
+}
+
+/* Style the main element */
+main {
+	max-width: 100%;
+    display: block; /* Block display */
+    text-align: center; /* Center text */
+    margin: 20px 0; /* Add margins */
+    padding: 20px; /* Add padding */
+    border-radius: 10px; /* Rounded borders */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+/* Set the default fonts for the website */
+body {
+    font-family: 'Arial', sans-serif; /* Choosing the default font */
+}
+
+/* Adjust the font sizes for all headings */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 24px; /* Adjust font size for headings */
+}
+
+/* Change the color of at least one heading */
+h1 {
+    color: darkred; /* Dark Red color for h1 */
+}
+
+/* Format the list items */
+ul.row {
+    list-style: none; /* Remove list bullets */
+    padding: 0; /* Remove default padding */
+}
+
+ul.row li {
+    display: inline-block; /* Display list items horizontally */
+    margin-right: 5px; /* Add right margin between list items */
+}
+
+/* Responsive styles for navigation links */
+.nav .row li a {
+    display: block; /* Change display property to block */
+    color: #fff; /* Text color */
+    text-decoration: none; /* Remove underline */
+    background-color: #007BFF; /* Background color */
+    padding: 12px 20px; /* Increase padding for larger size */
+    border-radius: 20px; /* Rounded corners */
+    margin-bottom: 10px; /* Add margin between buttons */
+}
+
+    /* Ensure last link does not have right margin */
+    .nav .row li:last-child a {
+        margin-right: 0; /* Remove right margin for last link */
+    }
+
+/* Reduce the font size for the footer, center it, and include a top margin */
+footer {
+    font-size: 12px; /* Reduce font size for the footer */
+    text-align: center; /* Center text */
+    margin-top: 20px; /* Add top margin */
+}
+
+/* Including other appropriate styles. Experiment and be creative */
+
+/* Additional styles */
+
+/* Style the welcome-container */
+#welcome-container {
+    background-color: #fff; /* White background */
+    padding: 20px; /* Add padding */
+    border-radius: 10px; /* Rounded borders */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+/* Style the creative-content inside welcome-container */
+#creative-content p {
+    color: #555; /* Dark gray text color */
+    font-style: italic; /* Italicize text */
+}
+
+.logo img {
+    margin-right: 10px;  /* Adds a right margin of 10 pixels to the logo image */
+    max-width: 30%;      /* Sets the maximum width of the logo to 10% of its containing element */
+    display: block;      /* Uses grid layout for the logo image */
+}
+
+
+/* Style the aside section */
+aside {
+    background-color: #f8f8f8; /* Light gray background */
+    padding: 15px; /* Add padding */
+    border-radius: 8px; /* Rounded borders */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+/* Style the links in the aside section */
+aside a {
+    color: #007BFF; /* Blue link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    margin-right: 10px; /* Add right margin */
+}
+
+aside a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Style the footer links */
+footer a {
+    color: #333; /* Dark text color */
+    text-decoration: none; /* Remove underline */
+    margin: 0 10px; /* Add margins */
+}
+
+footer a:hover {
+    color: #007BFF; /* Blue color on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Style for the banner image */
+#banner-image {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Limit the maximum height of the image */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+
+}
+
+/* Styles for tablet view */
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Resetting styles for various elements */
+    body, header, nav, main, footer, footer p {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    /* Set the background color for the website */
+    body {
+        background-color: #f0f0f0; /* Light gray background */
+    }
+
+    /* Style the container element to set the width of the page and center the page */
+    #main-container {
+        max-width: 100%; /* Set the width of the container */
+        margin: 0 auto; /* Center the container */
+    }
+
+    /* Style the header element */
+    header {
+        background-color: #333; /* Dark background color */
+        margin-top: 20px; /* Add top margin */
+        margin-bottom: 20px; /* Add bottom margin */
+        border-radius: 10px; /* Rounded borders */
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+        text-align: center; /* Center text */
+    }
+
+    /* Style the nav element */
+    .nav {
+        text-align: center; /* Center text */
+        padding: 5px 10px; /* Add padding */
+        margin: 10px 0; /* Add margins */
+        border: 1px solid #ddd; /* Add borders */
+    }
+
+    /* Style the main element */
+    main {
+        max-width: 100%;
+        display: block; /* Block display */
+        text-align: center; /* Center text */
+        margin: 20px 0; /* Add margins */
+        padding: 20px; /* Add padding */
+        border-radius: 10px; /* Rounded borders */
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    }
+
+    /* Set the default fonts for the website */
+    body {
+        font-family: 'Arial', sans-serif; /* Choosing the default font */
+    }
+
+    /* Adjust the font sizes for all headings */
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 20px; /* Adjust font size for headings */
+    }
+
+    /* Format the list items */
+    ul.row {
+        list-style: none; /* Remove list bullets */
+        padding: 0; /* Remove default padding */
+    }
+
+    ul.row li {
+        display: inline-block; /* Display list items horizontally */
+        margin-right: 10px; /* Add right margin between list items */
+    }
+
+    /* Style the navigation links */
+    .nav .row li a {
+        display: inline-block; /* Display as inline-block */
+        color: #fff; /* Text color */
+        text-decoration: none; /* Remove underline */
+        background-color: #007BFF; /* Background color */
+        padding: 8px 16px; /* Padding */
+        border-radius: 20px; /* Rounded corners */
+        margin-right: 5px; /* Add margin between buttons */
+        margin-bottom: 10px; /* Add margin between rows */
+    }
+
+    /* Ensure last link does not have right margin */
+    .nav .row li:last-child a {
+        margin-right: 0; /* Remove right margin for last link */
+    }
+
+    /* Reduce the font size for the footer, center it, and include a top margin */
+    footer {
+        font-size: 14px; /* Reduce font size for the footer */
+        text-align: center; /* Center text */
+        margin-top: 20px; /* Add top margin */
+    }
+
+    /* Style the banner image */
+    #banner-image {
+        width: 100%; /* Make the image responsive */
+        max-height: 300px; /* Limit the maximum height of the image */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    }
+
+    /* Style the welcome-container */
+    #welcome-container {
+        background-color: #fff; /* White background */
+        padding: 20px; /* Add padding */
+        border-radius: 10px; /* Rounded borders */
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    }
+
+    /* Style the creative-content inside welcome-container */
+    #creative-content p {
+        color: #555; /* Dark gray text color */
+        font-style: italic; /* Italicize text */
+    }
+
+    .logo img {
+    	margin-right: 10px;  /* Adds a right margin of 10 pixels to the logo image */
+    	max-width: 30%;      /* Sets the maximum width of the logo to 10% of its containing element */
+    	display: block;      /* Uses grid layout for the logo image */
+	}
+
+
+    /* Style the aside section */
+    aside {
+        background-color: #f8f8f8; /* Light gray background */
+        padding: 15px; /* Add padding */
+        border-radius: 8px; /* Rounded borders */
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+    }
+
+    /* Style the links in the aside section */
+    aside a {
+        color: #007BFF; /* Blue link color */
+        text-decoration: none; /* Remove underline */
+        font-weight: bold; /* Bold text */
+        margin-right: 10px; /* Add right margin */
+    }
+
+    aside a:hover {
+        text-decoration: underline; /* Underline on hover */
+    }
+
+    /* Style the footer links */
+    footer a {
+        color: #333; /* Dark text color */
+        text-decoration: none; /* Remove underline */
+        margin: 0 10px; /* Add margins */
+    }
+
+    footer a:hover {
+        color: #007BFF; /* Blue color on hover */
+        text-decoration: underline; /* Underline on hover */
+    }
+
+}
+
+
+
+@media (min-width: 1024px) {
+
+
+body, header, nav, main, footer, footer p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+/* Set the background color for the website */
+body {
+    background-color: #f0f0f0; /* Light gray background */
+}
+
+/* Style the container element to set the width of the page and center the page */
+#main-container {
+    width: 80%; /* Set the width of the container */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Style the header element */
+header {
+    background-color: #333; /* Dark background color */
+    margin-top: 20px; /* Add top margin */
+    margin-bottom: 20px; /* Add bottom margin */
+    border-radius: 10px; /* Rounded borders */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    text-align: center; /* Center text */
+}
+
+/* Style the nav element */
+.nav {
+    text-align: center; /* Center text */
+    padding: 10px 0; /* Add padding */
+    margin: 10px 0; /* Add margins */
+    border: 1px solid #ddd; /* Add borders */
+}
+
+/* Style the main element */
+main {
+    display: block; /* Block display */
+    text-align: center; /* Center text */
+    margin: 20px 0; /* Add margins */
+    padding: 20px; /* Add padding */
+    border-radius: 10px; /* Rounded borders */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+/* Set the default fonts for the website */
+body {
+    font-family: 'Arial', sans-serif; /* Choosing the default font */
+}
+
+/* Adjust the font sizes for all headings */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 24px; /* Adjust font size for headings */
+}
+
+/* Change the color of at least one heading */
+h1 {
+    color: darkred; /* Dark Red color for h1 */
+}
+
+/* Format the list items */
+ul.row {
+    list-style: none; /* Remove list bullets */
+    padding: 0; /* Remove default padding */
+}
+
+ul.row li {
+    display: inline-block; /* Display list items horizontally */
+    margin-right: 10px; /* Add right margin between list items */
+}
+
+/* Styles for navigation links */
+.nav .row li a:hover {
+    text-decoration: underline;
+}
+
+
+/* Reduce the font size for the footer, center it, and include a top margin */
+footer {
+    font-size: 14px; /* Reduce font size for the footer */
+    text-align: center; /* Center text */
+    margin-top: 20px; /* Add top margin */
+}
+
+/* Including other appropriate styles. Experiment and be creative */
+
+/* Additional styles */
+
+/* Style the welcome-container */
+#welcome-container {
+    background-color: #fff; /* White background */
+    padding: 20px; /* Add padding */
+    border-radius: 10px; /* Rounded borders */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+/* Style the creative-content inside welcome-container */
+#creative-content p {
+    color: #555; /* Dark gray text color */
+    font-style: italic; /* Italicize text */
+}
+
+.logo img {
+    margin-right: 10px;  /* Adds a right margin of 10 pixels to the logo image */
+    max-width: 10%;      /* Sets the maximum width of the logo to 10% of its containing element */
+    display: grid;      /* Uses grid layout for the logo image */
+}
+
+/* Responsive styles for navigation links */
+.nav .row li a {
+    display: block; /* Change display property to block */
+    color: #fff; /* Text color */
+    text-decoration: none; /* Remove underline */
+    background-color: #007BFF; /* Background color */
+    padding: 8px 16px; /* Padding to make them look like buttons */
+    border-radius: 20px; /* Rounded corners */
+    margin-bottom: 10px; /* Add margin between buttons */
+}
+
+/* Hover effect for navigation links */
+.nav .row li a:hover {
+    background-color: #0056b3; /* Darker background color on hover */
+}
+
+/* Active effect for navigation links */
+.nav .row li a:active {
+    background-color: #004080; /* Dark background color when active */
+}
+
+
+/* Style the aside section */
+aside {
+    background-color: #f8f8f8; /* Light gray background */
+    padding: 15px; /* Add padding */
+    border-radius: 8px; /* Rounded borders */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+/* Style the links in the aside section */
+aside a {
+    color: #007BFF; /* Blue link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    margin-right: 10px; /* Add right margin */
+}
+
+aside a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Style the footer links */
+footer a {
+    color: #333; /* Dark text color */
+    text-decoration: none; /* Remove underline */
+    margin: 0 10px; /* Add margins */
+}
+
+footer a:hover {
+    color: #007BFF; /* Blue color on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+}

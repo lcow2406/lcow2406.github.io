@@ -1,4 +1,4 @@
-/* Styles for about.html */
+ /* Styles for about.html */
 
 body, header, nav, main, footer, footer p {
     margin: 0;
@@ -58,7 +58,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Change the color of at least one heading */
 h1 {
-    color: darkred; /* Dark Red color for h1 */
+    color: whitesmoke;
+}
+
+.mini-head{
+	color: chocolate;
 }
 
 /* Format the list items */
@@ -75,6 +79,94 @@ ul.row li {
 /* Styles for navigation links */
 .nav .row li a:hover {
     text-decoration: underline;
+}
+
+/* Style for team members section */
+#team-members {
+    margin-top: 20px; /* Add top margin */
+    text-align: center;
+}
+
+/* Style for individual team member articles */
+#team-members article {
+    margin-bottom: 20px; /* Add bottom margin */
+    border: 1px solid #ddd; /* Add border */
+    border-radius: 5px; /* Add border radius */
+    overflow: hidden; /* Ensure content does not overflow */
+}
+
+/* Style for team member images */
+#team-members img {
+    max-width: 100%; /* Ensure images don't exceed container width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Make images block-level */
+    width: 200px; /* Set a specific width */
+    height: 200px; /* Set a specific height */
+}
+	
+
+/* Style for team member details */
+#team-members article div {
+    padding: 15px; /* Add padding */
+}
+
+.info{
+	text-align: left;
+}
+
+/* Style for team member name and role */
+#team-members article h3 {
+    margin-top: 0; /* Remove top margin */
+    margin-bottom: 10px; /* Add bottom margin */
+}
+
+/* Style for team member description */
+#team-members article p {
+    margin-bottom: 10px; /* Add bottom margin */
+}
+
+/* Style for team member speech or quote */
+#team-members article aside {
+    font-style: italic; /* Italicize text */
+    color: #666; /* Dim text color */
+}
+
+/* Style for the Our Story section */
+#our-story {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the heading */
+#our-story h2 {
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style for the paragraphs */
+#our-story p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Style for the last paragraph */
+#our-story p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Reduce the font size for the footer, center it, and include a top margin */
+footer {
+    font-size: 14px; /* Reduce font size for the footer */
+    text-align: center; /* Center text */
+    margin-top: 20px; /* Add top margin */
 }
 
 /* Including other appropriate styles. Experiment and be creative */
@@ -141,66 +233,6 @@ aside a {
 
 aside a:hover {
     text-decoration: underline; /* Underline on hover */
-}
-
-
-/* Style for the weekly sales section */
-#weekly-sales {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
-
-/* Style for each sale item */
-.sale-item {
-    width: 45%; /* Adjust the width as needed */
-    text-align: center;
-}
-
-/* Style for the images within sale items */
-.sale-item img {
-    width: 100%; /* Set width to fill container */
-    height: auto; /* Maintain aspect ratio */
-    max-width: 100%; /* Ensure image doesn't exceed container width */
-    max-height: 200px; /* Set maximum height */
-    margin-bottom: 10px; /* Add some space below the image */
-}
-
-/* Style for catchy paragraph with customer guarantee */
-#customer-guarantee {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Style for the reasons to buy section */
-#reasons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-/* Style for each reason */
-.reason {
-    width: 45%; /* Adjust the width as needed */
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Style for the images within reasons */
-.reason img {
-    width: 100%; /* Set width to fill container */
-    height: auto; /* Maintain aspect ratio */
-    max-width: 100%; /* Ensure image doesn't exceed container width */
-    max-height: 200px; /* Set maximum height */
-    margin-bottom: 10px; /* Add some space below the image */
-}
-
-
-/* Reduce the font size for the footer, center it, and include a top margin */
-footer {
-    font-size: 14px; /* Reduce font size for the footer */
-    text-align: center; /* Center text */
-    margin-top: 20px; /* Add top margin */
 }
 
 /* Style the footer links */
