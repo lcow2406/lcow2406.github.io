@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+    Student Name: Aliya
+    My Product: Central Vacuum
+    Term Project - 01
+-->
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and viewport -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- External stylesheet link -->
+    <link rel="stylesheet" href="css/contact.css"> <!-- Link to the external CSS stylesheet -->
+
+    <!-- Title of the page -->
+    <title>Contact Form</title>
+    <link rel="icon" type="image/x-icon" href="images/CentralVacuum.ico">
+</head>
+<body>
+    <!-- Main container -->
+    <div id="main-container">
+        <!-- Navigation Bar with Logo -->
+        <nav class="nav">
+            <!-- Link back to Home Page -->
+            <a href="index.html" class="logo">
+                <img src="images/CentralVacuum.png" alt="Product Logo">
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="row">
+                <li><a href="index.html">Home</a> &nbsp; </li>
+                <li><a href="about.html">About Us</a> &nbsp; </li>
+                <li><a href="team.html">Our Team</a> &nbsp; </li>
+                <li><a href="specials.html">Specials</a> &nbsp; </li>
+                <li><a href="training.html">Training</a> &nbsp; </li>
+                <li><a href="media.html">Media</a> &nbsp; </li>
+                <li><a href="faqs.html">FAQs</a> &nbsp; </li>
+                <li><a href="contact.html">Contact Us</a> &nbsp; </li>
+            </ul>
+        </nav>            
+        <header>
+            <!-- Product banner image -->
+            <img src="images/vaccum-banner.png" alt="Product Banner" height="200" width="800" id="banner-image">
+            <!-- Heading for the contact form -->
+            <h1 class="contact">&#x2193; Contact Form &#x2193;</h1> 
+        </header>
+        <main>
+            <!-- Form element -->
+            <form action="#" method="post" id="contact-form">
+                <!-- Heading and instructions -->
+                <h2>Contact Information</h2>
+                <ol>
+                    <li>Fill out the form below to get in touch with us:</li>
+                </ol>
+
+                <!-- Fieldset with legend -->
+                <fieldset>
+                    <legend>Contact Details</legend>
+
+                    <!-- Input fields -->
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required><br>
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required><br>
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Enter your message" required></textarea><br>
+
+                    <!-- Dropdown list -->
+                    <label for="department">Department:</label>
+                    <select id="department" name="department">
+                        <option value="sales">Sales</option>
+                        <option value="support">Support</option>
+                        <option value="billing">Billing</option>
+                        <option value="other">Other</option>
+                    </select><br>
+
+                    <!-- Radio buttons -->
+                    <label>Preferred Contact Method:</label><br>
+                    <input type="radio" id="contact-email" name="contact-method" value="email" checked>
+                    <label for="contact-email">Email</label><br>
+                    <input type="radio" id="contact-phone" name="contact-method" value="phone">
+                    <label for="contact-phone">Phone</label><br>
+
+                    <!-- Checkbox -->
+                    <input type="checkbox" id="subscribe" name="subscribe" value="yes">
+                    <label for="subscribe">Subscribe to our newsletter</label><br>
+                </fieldset>
+
+                <!-- Buttons -->
+                <button type="submit">Submit Request</button>
+                <button type="reset">Reset Form</button>
+            </form>
+        </main>
+
+        <!-- Footer Section -->
+        <footer>
+            <!-- Copyright Information -->
+            <p>&copy; Copyright 2024. All Rights Reserved.</p>
+            <!-- Student Name and Student Number -->
+            <p>Name: Aliya. &nbsp; &nbsp; Student Number: c0929608</p>
+            <!-- Request Information Link with Email -->
+            <p>Request Information: <a href="mailto:info@centralvacuum.com">info@centralvacuum.com</a></p>
+        </footer>
+    </div>
+</body>
+</html>

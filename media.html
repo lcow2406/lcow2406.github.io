@@ -12,11 +12,9 @@
     
     <!-- External stylesheet link -->
     <link rel="stylesheet" href="css/style.css">
-	<script src="scripts/welcomescript.js"></script>
-
 
     <!-- Title of the page -->
-    <title>Home Page</title>
+    <title>Media Page</title>
     <link rel="icon" type="image/x-icon" href="images/CentralVacuum.ico">
 </head>
 <body>
@@ -45,19 +43,23 @@
             <img src="images/vaccum-banner.png" alt="Product Banner" height="200" width="800" id="banner-image">
         </header>
         <main>
-            <!-- Sub-Container -->
-            <div id="welcome-container">
-                <!-- Heading -->
-                <h1>Welcome Customers, to Central Vacuum.</h1>
-                <div id="creative-content">
-                    <p>Embark on a journey where cleanliness meets innovation! Discover the extraordinary cleaning experience with Central Vacuum Mart - where every suction narrates a story of pristine spaces. Join us and redefine the way you clean!</p>
-
-                </div>
+            <!-- Audio component -->
+            <div class="media-container">
+                <h2>Listen to Our Latest Cleaning Tips Podcast</h2>
+                <audio controls>
+                    <source src="media/audio.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
             </div>
-            <aside>
-            <h2>Unleash the Superior Cleaning Potential of Central Vacuum Systems for an Elevated Experience</h2>
-            <a href="specials.html">Unlock Premium Deals: Discover Exclusive Central Vacuum Offers Just for You!</a>
-        </aside>
+            
+            <!-- Video component -->
+            <div class="media-container">
+                <h2>Watch How Central Vacuum Transforms Cleaning Routine</h2>
+                <video width="400" controls>
+                    <source src="media/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </main>
 
         <!-- Footer Section -->
