@@ -1,61 +1,63 @@
 /* Reset margins, paddings, and borders */
-body, header, nav, main, footer {
+* {
     margin: 0;
     padding: 0;
-    border: 0;
+    box-sizing: border-box;
 }
 
 /* Body styles */
 body {
-    background-color: lightskyblue;
-    font-family: Verdana, Arial, sans-serif;
+    background-color: #e0f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
 }
 
 /* Container for centering content */
 #container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 /* Header styles */
 header {
-    background-color: #333;
-    margin: 20px 0;
+    background-color: #00796b;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    padding: 10px;
 }
 
 /* Navigation styles */
 nav {
     text-align: center;
-    background-color: #f0f0f0;
-    padding: 10px;
+    background-color: #004d40;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
 }
 
 nav a {
     text-decoration: none;
-    color: #333;
-    padding: 10px 15px;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 0 5px;
     display: inline-block;
     border-radius: 5px;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 nav a:hover {
-    background-color: #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    background-color: #00695c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Show the Register and Login links only when no user is logged in */
-nav .hidden {
+/* Hide elements that are not needed initially */
+.hidden {
     display: none;
-}
-
-/* Show all other links when user is logged in */
-nav a:not(.hidden) {
-    display: inline-block;
 }
 
 /* Main content styles */
@@ -64,11 +66,11 @@ main {
     margin: 20px 0;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #fff;
 }
 
-/* Basic CSS to hide all sections except the home section */
+/* Show only the home section initially */
 section {
     display: none;
 }
@@ -79,106 +81,117 @@ section {
 
 /* Headings styles */
 h1, h2, h3, h4, h5, h6 {
-    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
 h2 {
-    color: #cc3300;
+    color: #d32f2f;
 }
 
-/* List styles */
-ul {
-    padding: 0;
-    list-style: none;
+/* Product item styles */
+.product-item {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-li {
-    margin-bottom: 5px;
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-item img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-item h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    color: #00796b;
+}
+
+.product-item p {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.product-item button {
+    background-color: #00796b;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.product-item button:hover {
+    background-color: #004d40;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Cart styles */
+.cart-item {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item h3 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.cart-item p {
+    margin: 5px 0;
 }
 
 /* Footer styles */
 footer {
-    font-size: 0.8em;
+    font-size: 0.9em;
     text-align: center;
     margin-top: 20px;
-    background-color: #f5f5f5;
-    color: black;
-    border-top: 10px solid #ccc;
-    padding: 10px;
-}
-
-footer:hover {
-    background-color: #ddd;
-    color: #777;
+    background-color: #004d40;
+    color: #fff;
+    border-top: 5px solid #00796b;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive styles */
 
 /* Mobile styles */
 @media (max-width: 768px) {
-    nav {
-        padding: 5px;
-    }
-
     nav a {
         padding: 8px 12px;
-    }
-
-    header img {
-        width: 100%;
-        height: auto;
-    }
-
-    .logo img {
-        max-width: 30%;
-    }
-
-    main {
-        padding: 15px;
-    }
-
-    h1, h2, h3 {
-        font-size: 1.2em;
-    }
-
-    footer {
-        font-size: 0.7em;
-        padding: 5px;
+        margin: 3px;
     }
 
     .product-item {
-        width: calc(50% - 20px); /* 2 items per row on small screens */
+        width: calc(100% - 30px); /* Full width on small screens */
     }
 }
 
 /* Tablet styles */
 @media (min-width: 769px) and (max-width: 1024px) {
-    nav {
-        padding: 10px;
-    }
-
     nav a {
-        padding: 10px 15px;
-    }
-
-    .logo img {
-        max-width: 20%;
-    }
-
-    main {
-        padding: 20px;
-    }
-
-    h1, h2, h3 {
-        font-size: 1.4em;
-    }
-
-    footer {
-        font-size: 0.8em;
+        padding: 10px 20px;
     }
 
     .product-item {
-        width: calc(33.333% - 20px); /* 3 items per row on medium screens */
+        width: calc(50% - 30px); /* 2 items per row on medium screens */
     }
 }
 
@@ -187,22 +200,13 @@ footer:hover {
     nav ul {
         display: flex;
         justify-content: center;
-        padding: 0;
-        margin: 0;
     }
 
     nav li {
         margin: 0 10px;
-        background-color: #f0f0f0;
-        border-radius: 30px;
-        box-shadow: 0 5px 3px rgba(0, 0, 0, 0.2);
-    }
-
-    nav li:hover {
-        background-color: #ddd;
     }
 
     .product-item {
-        width: calc(25% - 20px); /* 4 items per row on large screens */
+        width: calc(25% - 30px); /* 4 items per row on large screens */
     }
 }
