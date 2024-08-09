@@ -1,4 +1,5 @@
 let cart = [];
+const taxRate = 0.04; // 4% tax rate
 
 // Scroll to Cart section
 function scrollToCart() {
@@ -33,7 +34,7 @@ fetch('products.json')
                 <img src="${product.image}" alt="${product.name}">
                 <div>
                     <h3>${product.name}</h3>
-                    <p>Price: $${product.price}</p>
+                    <p>Price: $${(product.price * (1 + taxRate)).toFixed(2)}</p>
                 </div>
                 <button onclick="addToCart(${product.id})">Add to Cart</button>
             `;
@@ -48,11 +49,13 @@ function addToCart(productId) {
         .then(response => response.json())
         .then(products => {
             const product = products.find(p => p.id === productId);
+            const taxIncludedPrice = product.price * (1 + taxRate);
             const existingProduct = cart.find(item => item.id === productId);
             if (existingProduct) {
                 existingProduct.quantity += 1;
+                existingProduct.price = taxIncludedPrice; // Update price with tax
             } else {
-                cart.push({ ...product, quantity: 1 });
+                cart.push({ ...product, quantity: 1, price: taxIncludedPrice });
             }
             updateCart();
         })
@@ -71,7 +74,7 @@ function updateCart() {
             <div>
                 <h4>${item.name}</h4>
                 <p>Quantity: ${item.quantity}</p>
-                <p>Price per item: $${item.price.toFixed(2)}</p>
+                <p>Price per item (with tax): $${item.price.toFixed(2)}</p>
                 <p>Total: $${(item.price * item.quantity).toFixed(2)}</p>
                 <button onclick="decreaseQuantity(${item.id})">-</button>
                 <button onclick="increaseQuantity(${item.id})">+</button>
@@ -119,12 +122,11 @@ function updateTotalQuantity() {
 
 // Place Order and generate invoice
 function placeOrder() {
-    const taxRate = 0.04;
     let totalAmount = 0;
 
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
-        totalAmount += itemTotal + (itemTotal * taxRate);
+        totalAmount += itemTotal;
     });
 
     const invoiceContent = `
@@ -132,7 +134,7 @@ function placeOrder() {
     
     Order Summary:
     -----------------------------------
-    ${cart.map(item => `${item.name} - Quantity: ${item.quantity}, Price: $${item.price}, Total: $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
+    ${cart.map(item => `${item.name} - Quantity: ${item.quantity}, Price (with tax): $${item.price.toFixed(2)}, Total: $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
     -----------------------------------
     Total Amount (with 4% tax): $${totalAmount.toFixed(2)}
     `;
