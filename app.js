@@ -1,3 +1,5 @@
+// Aliya
+
 let cart = [];
 const taxRate = 0.04; // 4% tax rate
 
@@ -122,12 +124,27 @@ function updateTotalQuantity() {
 
 // Place Order and generate invoice
 function placeOrder() {
+    if (cart.length === 0) {
+        alert("No products found in the cart to place an order.");
+        return;
+    }
+
     let totalAmount = 0;
+    let totalItems = 0;
 
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         totalAmount += itemTotal;
+        totalItems += item.quantity;
     });
+
+    const summaryMessage = `
+        Order placed successfully!\n
+        Total Products: ${totalItems}\n
+        Total Amount (with 4% tax): $${totalAmount.toFixed(2)}
+    `;
+
+    alert(summaryMessage);
 
     const invoiceContent = `
     Thanks for shopping at Aliya's Central Vacuum Store!
@@ -147,7 +164,7 @@ function placeOrder() {
     a.click();
     window.URL.revokeObjectURL(url);
 
-    alert('Order placed successfully!');
+    // Clear cart after order is placed
     cart = [];
     updateCart();
 }
