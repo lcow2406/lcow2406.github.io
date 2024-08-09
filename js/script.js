@@ -1,30 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     const sections = {
         home: 'json/home.json',
-        cart: 'json/cart.json',
-        products: 'products.json'
+        about: 'json/about.json',
+        contact: 'json/contact.json',
+        faqs: 'json/faqs.json',
+        media: 'json/media.json',
+        specials: 'json/specials.json',
+        team: 'json/team.json',
+        training: 'json/training.json'
     };
 
-    // Fetch and display content for the specified section
     function fetchAndDisplayContent(sectionId, fileName) {
         fetch(fileName)
             .then(response => response.json())
             .then(data => {
                 const section = document.getElementById(sectionId);
-                if (sectionId === 'products') {
-                    displayProducts(data);
-                } else {
-                    section.innerHTML = `
-                        <h2>${data.title}</h2>
-                        <p>${data.content}</p>
-                    `;
-                }
+                section.innerHTML = 
+                    <h2>${data.title}</h2>
+                    <p>${data.content}</p>
+                ;
                 section.classList.remove('hidden');
             })
             .catch(error => console.error('Error fetching content:', error));
     }
 
-    // Show a specific section and hide others
     function showSection(id) {
         document.querySelectorAll('main section').forEach(section => {
             section.classList.add('hidden');
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(id).classList.remove('hidden');
     }
 
-    // Handle navigation clicks
     document.querySelectorAll('nav a').forEach(anchor => {
         anchor.addEventListener('click', event => {
             event.preventDefault();
@@ -45,31 +43,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Show the home section initially
+    // Initially show the home section
     fetchAndDisplayContent('home', sections.home);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Section visibility handling
+    const sections = document.querySelectorAll('main > section');
+    const navLinks = document.querySelectorAll('nav a');
+    let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser')) || null;
+
+    function showSection(id) {
+        sections.forEach(section => {
+            section.style.display = (section.id === id) ? 'block' : 'none';
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            showSection(targetId);
+        });
+    });
+
+    // Initialize by showing the 'home' section
+    showSection('home');
 
     // Function to fetch and display products
+    async function fetchProducts() {
+        try {
+            const response = await fetch('products.json');
+            if (!response.ok) throw new Error('Network response was not ok');
+            const products = await response.json();
+            displayProducts(products);
+            updateCart();
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    }
+
+    // Function to display products
     function displayProducts(products) {
         const productsContainer = document.getElementById('products-container');
         productsContainer.innerHTML = '';
         products.forEach(product => {
             const productElement = document.createElement('div');
             productElement.className = 'product-item';
-            productElement.innerHTML = `
+            productElement.innerHTML = 
                 <img src="${product.image}" alt="${product.name}" width="100" height="100">
                 <h3>${product.name}</h3>
                 <p>$${product.price.toFixed(2)}</p>
                 <button data-id="${product.id}">Add to Cart</button>
-            `;
+            ;
             productsContainer.appendChild(productElement);
         });
 
-        // Attach event listeners to buttons after products are rendered
-        attachProductButtonsListeners();
-    }
-
-    // Attach event listeners to product buttons
-    function attachProductButtonsListeners() {
+        // Attach event listeners to buttons
         document.querySelectorAll('#products-container button').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = parseInt(this.getAttribute('data-id'));
@@ -100,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to add a product to the cart
     async function addToCart(productId) {
         try {
-            const response = await fetch('json/products.json');
+            const response = await fetch('products.json');
             if (!response.ok) throw new Error('Network response was not ok');
             const products = await response.json();
             const product = products.find(p => p.id === productId);
@@ -116,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 localStorage.setItem('cart', JSON.stringify(cart));
                 updateCart();
-                showPopup(`${product.name} added to cart`);
+                showPopup(${product.name} added to cart);
             }
         } catch (error) {
             console.error('Error adding to cart:', error);
@@ -136,19 +166,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemTotal = (item.price + tax) * item.quantity;
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
-            cartItem.innerHTML = `
+            cartItem.innerHTML = 
                 <h3>${item.name}</h3>
                 <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
                 <p>Tax: $${tax.toFixed(2)} (12%)</p>
                 <p>Total: $${itemTotal.toFixed(2)}</p>
                 <button data-id="${item.id}" class="decrease-quantity">-</button>
                 <button data-id="${item.id}" class="remove-from-cart">Remove</button>
-            `;
+            ;
             cartContainer.appendChild(cartItem);
             totalPrice += itemTotal;
         });
 
-        totalPriceElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
+        totalPriceElement.textContent = Total: $${totalPrice.toFixed(2)};
 
         // Add place order button if there are items in the cart
         if (cart.length > 0) {
@@ -163,11 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Attach event listeners to decrease quantity buttons and remove buttons
-        attachCartButtonsListeners();
-    }
-
-    // Attach event listeners to cart buttons
-    function attachCartButtonsListeners() {
         document.querySelectorAll('.decrease-quantity').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = parseInt(this.getAttribute('data-id'));
@@ -195,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCart();
             const item = cart[productIndex];
-            showPopup(`${item ? item.name : 'Product'} quantity updated. Remaining: ${item ? item.quantity : 0}`);
+            showPopup(${item ? item.name : 'Product'} quantity updated. Remaining: ${item ? item.quantity : 0});
         }
     }
 
@@ -207,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cart = cart.filter(item => item.id !== productId);
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCart();
-            showPopup(`${product.name} removed from cart`);
+            showPopup(${product.name} removed from cart);
         }
     }
 
@@ -220,16 +245,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Display order summary
         const orderSummaryContainer = document.createElement('div');
         orderSummaryContainer.className = 'order-summary';
-        orderSummaryContainer.innerHTML = `
+        orderSummaryContainer.innerHTML = 
             <h2>Order Summary</h2>
-            ${cart.map(item => `
+            ${cart.map(item => 
                 <p>${item.name} - Quantity: ${item.quantity} - Price: $${item.price.toFixed(2)} - Tax: $${(item.price * 0.12).toFixed(2)} - Total: $${((item.price + (item.price * 0.12)) * item.quantity).toFixed(2)}</p>
-            `).join('')}
+            ).join('')}
             <p><strong>Total Paid: $${cart.reduce((total, item) => total + (item.price + (item.price * 0.12)) * item.quantity, 0).toFixed(2)}</strong></p>
-        `;
+        ;
         document.body.appendChild(orderSummaryContainer);
     }
 
     // Fetch and display products when the page loads
-    fetchAndDisplayContent('products', sections.products);
+    fetchProducts();
 });
+
