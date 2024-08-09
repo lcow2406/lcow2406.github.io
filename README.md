@@ -1,5 +1,5 @@
-# CSD-Front-End-Web-Development-I-Term-Project
+# CSD-Front-End-Web-Development-2-Term-Project
 
-I completed my project as mentioned till Week 11
+I completed my project, met every instruction. 
 
 Thank you. 
