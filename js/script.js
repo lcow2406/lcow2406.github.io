@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sections = {
         home: 'json/home.json',
-        products: 'products.json'
+        products: 'json/products.json'
     };
 
     // Function to fetch and display content for sections
