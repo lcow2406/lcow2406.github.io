@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!response.ok) throw new Error('Network response was not ok');
             const products = await response.json();
             displayProducts(products);
-            updateCart();
         } catch (error) {
             console.error('Error fetching products:', error);
         }
@@ -62,16 +61,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const productElement = document.createElement('div');
             productElement.className = 'product-item';
             productElement.innerHTML = `
-                <img src="${product.image}" alt="${product.name}" width="100" height="100">
+                <img src="${product.image}" alt="${product.name}" width="200" height="150">
                 <h3>${product.name}</h3>
+                <p>${product.description}</p>
                 <p>$${product.price.toFixed(2)}</p>
-                <button data-id="${product.id}">Add to Cart</button>
+                <button data-id="${product.id}" class="add-to-cart">Add to Cart</button>
             `;
             productsContainer.appendChild(productElement);
         });
 
         // Attach event listeners to "Add to Cart" buttons
-        document.querySelectorAll('#products-container button').forEach(button => {
+        document.querySelectorAll('#products-container .add-to-cart').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = parseInt(this.getAttribute('data-id'));
                 addToCart(productId);
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Function to display a popup notification
+    // Function to show a popup notification
     function showPopup(message) {
         const popup = document.createElement('div');
         popup.className = 'popup';
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to place the order and generate invoice
+    // Function to generate and display invoice
     function placeOrder(cart) {
         if (cart.length === 0) {
             showPopup('Your cart is empty.');
@@ -209,8 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const invoice = generateInvoice(cart);
-
-        // Display invoice in an alert
         alert(invoice);
 
         // Clear the cart
