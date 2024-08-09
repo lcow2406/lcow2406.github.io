@@ -78,9 +78,7 @@ function updateCart() {
                 <h4>${item.name}</h4>
                 <p>Quantity: ${item.quantity}</p>
                 <p>Price per item: $${item.price.toFixed(2)}</p>
-                <p>Tax per item: $${item.tax.toFixed(2)}</p>
-                <p>Total with tax: $${item.totalWithTax.toFixed(2)}</p>
-                <p>Total for ${item.quantity} items: $${(item.totalWithTax * item.quantity).toFixed(2)}</p>
+                <p>Total with tax: $${(item.totalWithTax * item.quantity).toFixed(2)}</p>
                 <button onclick="decreaseQuantity(${item.id})">-</button>
                 <button onclick="increaseQuantity(${item.id})">+</button>
                 <button onclick="removeFromCart(${item.id})">Remove</button>
@@ -134,23 +132,36 @@ function placeOrder() {
 
     let totalAmount = 0;
     let totalItems = 0;
-    let totalTax = 0;
+    let invoiceContent = `
+    Thanks for shopping at Aliya's Central Vacuum Store!
+    
+    Order Summary:
+    -----------------------------------
+    `;
 
     cart.forEach(item => {
         const itemTotal = item.totalWithTax * item.quantity;
         totalAmount += itemTotal;
         totalItems += item.quantity;
-        totalTax += item.tax * item.quantity;
+        invoiceContent += `${item.name} - Quantity: ${item.quantity}, Price per item (with tax): $${item.totalWithTax.toFixed(2)}, Total: $${itemTotal.toFixed(2)}\n`;
     });
 
-    const summaryMessage = `
-        Order placed successfully!\n
-        Total Products: ${totalItems}\n
-        Total Tax: $${totalTax.toFixed(2)}\n
-        Total Amount (with 4% tax): $${totalAmount.toFixed(2)}
+    invoiceContent += `
+    -----------------------------------
+    Total Items: ${totalItems}
+    Total Amount (with 4% tax): $${totalAmount.toFixed(2)}
     `;
 
-    alert(summaryMessage);
+    alert("Order placed successfully!\n" + invoiceContent);
+
+    // Generate and download the invoice
+    const blob = new Blob([invoiceContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'invoice.txt';
+    a.click();
+    window.URL.revokeObjectURL(url);
 
     // Clear cart after order is placed
     cart = [];
