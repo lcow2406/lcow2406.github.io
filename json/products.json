@@ -1,22 +1,5 @@
 [
-    {"id": 1, "name": "Barbeque Nation", "price": 25.99, "image": "images/special1.jpg"},
-    {"id": 2, "name": "Grilled Delight", "price": 19.99, "image": "images/special2.jpg"},
-    {"id": 3, "name": "BBQ Ribs", "price": 29.99, "image": "images/special3.jpg"},
-    {"id": 4, "name": "Chicken BBQ", "price": 24.99, "image": "images/special4.jpg"},
-    {"id": 5, "name": "Veg BBQ", "price": 18.99, "image": "images/special5.jpg"},
-    {"id": 6, "name": "Spicy BBQ Wings", "price": 21.99, "image": "images/special6.jpg"},
-    {"id": 7, "name": "BBQ Sausages", "price": 23.99, "image": "images/special7.jpg"},
-    {"id": 8, "name": "BBQ Corn", "price": 17.99, "image": "images/special8.jpg"},
-    {"id": 9, "name": "BBQ Fish", "price": 26.99, "image": "images/special9.jpg"},
-    {"id": 10, "name": "BBQ Beef", "price": 27.99, "image": "images/special10.jpg"},
-    {"id": 11, "name": "BBQ Pulled Pork", "price": 22.99, "image": "images/special11.jpg"},
-    {"id": 12, "name": "BBQ Brisket", "price": 28.99, "image": "images/special12.jpg"},
-    {"id": 13, "name": "BBQ Chicken Wings", "price": 20.99, "image": "images/special13.jpg"},
-    {"id": 14, "name": "BBQ Lamb Chops", "price": 30.99, "image": "images/special14.jpg"},
-    {"id": 15, "name": "BBQ Tofu Skewers", "price": 19.99, "image": "images/special15.jpg"},
-    {"id": 16, "name": "BBQ Shrimp", "price": 27.99, "image": "images/special16.jpg"},
-    {"id": 17, "name": "BBQ Mushroom Skewers", "price": 16.99, "image": "images/special17.jpg"},
-    {"id": 18, "name": "BBQ Pineapple", "price": 15.99, "image": "images/special18.jpg"},
-    {"id": 19, "name": "BBQ Veggie Burger", "price": 18.99, "image": "images/special19.jpg"},
-    {"id": 20, "name": "BBQ Turkey Legs", "price": 24.99, "image": "images/special20.jpg"}
+    {"id": 1, "name": "Rear Small Vacuum", "price": 125.99, "image": "images/special1.jpg"},
+    {"id": 2, "name": "Detergent Vacuum", "price": 191.99, "image": "images/special2.jpg"},
+    {"id": 3, "name": "Vacuum Modulus", "price": 291.99, "image": "images/special3.jpg"}
 ]
