@@ -1,13 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const sections = {
-        home: 'json/home.json',
-        about: 'json/about.json',
-        contact: 'json/contact.json',
-        faqs: 'json/faqs.json',
-        media: 'json/media.json',
-        specials: 'json/specials.json',
-        team: 'json/team.json',
-        training: 'json/training.json'
+        home: 'json/home.json'
     };
 
     function fetchAndDisplayContent(sectionId, fileName) {
