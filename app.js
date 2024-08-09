@@ -35,8 +35,6 @@ fetch('products.json')
                 <div>
                     <h3>${product.name}</h3>
                     <p>Price: $${product.price.toFixed(2)}</p>
-                    <p>Tax: $${(product.price * taxRate).toFixed(2)}</p>
-                    <p>Total with Tax: $${(product.price * (1 + taxRate)).toFixed(2)}</p>
                 </div>
                 <button onclick="addToCart(${product.id})">Add to Cart</button>
             `;
