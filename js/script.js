@@ -201,36 +201,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to generate invoice content
-    function generateInvoice(cart) {
-        const date = new Date();
-        const formattedDate = date.toLocaleString();
-
-        let invoiceContent = `Premsingh Padya's BBQ International\n\n`;
-        invoiceContent += `\x1b[1mPremsingh Padya's\x1b[0m\x1b[1m BBQ International\x1b[0m\n\n`;
-        invoiceContent += `Invoice\nDate: ${formattedDate}\n\n`;
-        invoiceContent += 'Product Name | Quantity | Price | Tax | Total\n';
-        invoiceContent += '------------------------------------------------------\n';
-
-        cart.forEach(item => {
-            const tax = item.price * 0.12;
-            const itemTotal = (item.price + tax) * item.quantity;
-            invoiceContent += `${item.name.padEnd(15)} | ${item.quantity.toString().padEnd(8)} | $${item.price.toFixed(2).padEnd(6)} | $${tax.toFixed(2).padEnd(6)} | $${itemTotal.toFixed(2)}\n`;
-        });
-
-        const grandTotal = cart.reduce((total, item) => {
-            const tax = item.price * 0.12;
-            return total + (item.price + tax) * item.quantity;
-        }, 0);
-
-        invoiceContent += '------------------------------------------------------\n';
-        invoiceContent += `Grand Total: $${grandTotal.toFixed(2)}\n`;
-        invoiceContent += `\n\nThank you for your purchase!\n\n`;
-        invoiceContent += `\x1b[1mCompany Contact: 123-456-7890\x1b[0m\n`;
-
-        return invoiceContent;
-    }
-
     // Function to place the order and generate invoice
     function placeOrder(cart) {
         if (cart.length === 0) {
