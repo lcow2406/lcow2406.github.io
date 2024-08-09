@@ -37,8 +37,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize by showing the home section
+    // Initially show the home section
     fetchAndDisplayContent('home', sections.home);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Section visibility handling
+    const sections = document.querySelectorAll('main > section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    function showSection(id) {
+        sections.forEach(section => {
+            section.style.display = (section.id === id) ? 'block' : 'none';
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            showSection(targetId);
+        });
+    });
+
+    // Initialize by showing the 'home' section
+    showSection('home');
 
     // Function to fetch and display products
     async function fetchProducts() {
@@ -132,14 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalPrice = 0;
 
         cart.forEach(item => {
-            const tax = item.price * 0.12; // Calculate 12% tax
+            const tax = item.price * 0.04; // Calculate 04% tax
             const itemTotal = (item.price + tax) * item.quantity;
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
             cartItem.innerHTML = `
                 <h3>${item.name}</h3>
                 <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-                <p>Tax: $${tax.toFixed(2)} (12%)</p>
+                <p>Tax: $${tax.toFixed(2)} (04%)</p>
                 <p>Total: $${itemTotal.toFixed(2)}</p>
                 <button data-id="${item.id}" class="decrease-quantity">-</button>
                 <button data-id="${item.id}" class="remove-from-cart">Remove</button>
@@ -217,14 +240,14 @@ document.addEventListener('DOMContentLoaded', () => {
         orderSummaryContainer.className = 'order-summary';
         orderSummaryContainer.innerHTML = `
             <h2>Order Summary</h2>
-            ${cart.map(item => 
-                `<p>${item.name} - Quantity: ${item.quantity} - Price: $${item.price.toFixed(2)} - Tax: $${(item.price * 0.12).toFixed(2)} - Total: $${((item.price + (item.price * 0.12)) * item.quantity).toFixed(2)}</p>`
-            ).join('')}
-            <p><strong>Total Paid: $${cart.reduce((total, item) => total + (item.price + (item.price * 0.12)) * item.quantity, 0).toFixed(2)}</strong></p>
+            ${cart.map(item => `
+                <p>${item.name} - Quantity: ${item.quantity} - Price: $${item.price.toFixed(2)} - Tax: $${(item.price * 0.12).toFixed(2)} - Total: $${((item.price + (item.price * 0.04)) * item.quantity).toFixed(2)}</p>
+            `).join('')}
+            <p><strong>Total Paid: $${cart.reduce((total, item) => total + (item.price + (item.price * 0.04)) * item.quantity, 0).toFixed(2)}</strong></p>
         `;
         document.body.appendChild(orderSummaryContainer);
     }
 
-    // Initialize product fetching
+    // Initial fetch and display of products
     fetchProducts();
 });
