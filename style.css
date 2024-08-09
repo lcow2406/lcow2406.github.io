@@ -69,6 +69,7 @@ section {
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    align-items: center;
 }
 
 button {
@@ -89,16 +90,93 @@ button:hover {
     margin-right: 20px;
 }
 
-.product-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
 .cart-item img {
     width: 50px;
     height: auto;
     margin-right: 20px;
+}
+
+/* Responsive Styles */
+
+/* Mobile Devices */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 95%;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .iconCart {
+        float: none;
+        margin: 10px 0;
+    }
+
+    .iconCart img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .product-item, .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product-item img, .cart-item img {
+        width: 80px;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .iconCart img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .product-item img, .cart-item img {
+        width: 90px;
+    }
+
+    button {
+        padding: 6px 12px;
+    }
+}
+
+/* Laptops and Desktops */
+@media only screen and (min-width: 1025px) {
+    .container {
+        width: 80%;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .iconCart img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .product-item img, .cart-item img {
+        width: 100px;
+    }
+
+    button {
+        padding: 5px 10px;
+    }
 }
