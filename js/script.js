@@ -1,59 +1,54 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const sections = {
         home: 'json/home.json',
-        products: 'json/products.json'
+        cart: 'json/cart.json',
+        products: 'products.json'
     };
 
-    // Function to fetch and display content for sections
+    // Fetch and display content for the specified section
     function fetchAndDisplayContent(sectionId, fileName) {
         fetch(fileName)
             .then(response => response.json())
             .then(data => {
                 const section = document.getElementById(sectionId);
-                section.innerHTML = `
-                    <h2>${data.title}</h2>
-                    <p>${data.content}</p>
-                `;
+                if (sectionId === 'products') {
+                    displayProducts(data);
+                } else {
+                    section.innerHTML = `
+                        <h2>${data.title}</h2>
+                        <p>${data.content}</p>
+                    `;
+                }
                 section.classList.remove('hidden');
             })
             .catch(error => console.error('Error fetching content:', error));
     }
 
-    // Function to show the selected section and hide others
+    // Show a specific section and hide others
     function showSection(id) {
         document.querySelectorAll('main section').forEach(section => {
-            section.style.display = (section.id === id) ? 'block' : 'none';
+            section.classList.add('hidden');
         });
+        document.getElementById(id).classList.remove('hidden');
     }
 
-    // Event listener for navigation links
+    // Handle navigation clicks
     document.querySelectorAll('nav a').forEach(anchor => {
         anchor.addEventListener('click', event => {
             event.preventDefault();
             const targetId = anchor.getAttribute('data-target');
             if (sections[targetId]) {
                 fetchAndDisplayContent(targetId, sections[targetId]);
+            } else {
+                showSection(targetId);
             }
-            showSection(targetId);
         });
     });
 
-    // Initially show the home section
+    // Show the home section initially
     fetchAndDisplayContent('home', sections.home);
 
     // Function to fetch and display products
-    async function fetchProducts() {
-        try {
-            const response = await fetch(sections.products);
-            if (!response.ok) throw new Error('Network response was not ok');
-            const products = await response.json();
-            displayProducts(products);
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
-    }
-
-    // Function to display products in the products section
     function displayProducts(products) {
         const productsContainer = document.getElementById('products-container');
         productsContainer.innerHTML = '';
@@ -61,17 +56,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const productElement = document.createElement('div');
             productElement.className = 'product-item';
             productElement.innerHTML = `
-                <img src="${product.image}" alt="${product.name}" width="200" height="150">
+                <img src="${product.image}" alt="${product.name}" width="100" height="100">
                 <h3>${product.name}</h3>
-                <p>${product.description}</p>
                 <p>$${product.price.toFixed(2)}</p>
-                <button data-id="${product.id}" class="add-to-cart">Add to Cart</button>
+                <button data-id="${product.id}">Add to Cart</button>
             `;
             productsContainer.appendChild(productElement);
         });
 
-        // Attach event listeners to "Add to Cart" buttons
-        document.querySelectorAll('#products-container .add-to-cart').forEach(button => {
+        // Attach event listeners to buttons after products are rendered
+        attachProductButtonsListeners();
+    }
+
+    // Attach event listeners to product buttons
+    function attachProductButtonsListeners() {
+        document.querySelectorAll('#products-container button').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = parseInt(this.getAttribute('data-id'));
                 addToCart(productId);
@@ -79,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Function to show a popup notification
+    // Function to display a popup notification
     function showPopup(message) {
         const popup = document.createElement('div');
         popup.className = 'popup';
@@ -99,22 +98,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to add a product to the cart
-    function addToCart(productId) {
-        const products = JSON.parse(localStorage.getItem('products'));
-        const product = products.find(p => p.id === productId);
-        if (product) {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const existingProduct = cart.find(item => item.id === productId);
-
-            if (existingProduct) {
-                existingProduct.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
+    async function addToCart(productId) {
+        try {
+            const response = await fetch('json/products.json');
+            if (!response.ok) throw new Error('Network response was not ok');
+            const products = await response.json();
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProduct = cart.find(item => item.id === productId);
+                
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCart();
+                showPopup(`${product.name} added to cart`);
             }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-            showPopup(`${product.name} added to cart`);
+        } catch (error) {
+            console.error('Error adding to cart:', error);
         }
     }
 
@@ -127,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let totalPrice = 0;
 
         cart.forEach(item => {
-            const tax = item.price * 0.12; // 12% tax calculation
+            const tax = item.price * 0.12; // Calculate 12% tax
             const itemTotal = (item.price + tax) * item.quantity;
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
@@ -145,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         totalPriceElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
 
-        // Add "Place Order" button if cart is not empty
+        // Add place order button if there are items in the cart
         if (cart.length > 0) {
             const placeOrderButton = document.createElement('button');
             placeOrderButton.textContent = 'Place Order';
@@ -157,7 +162,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Attach event listeners to decrease quantity and remove buttons
+        // Attach event listeners to decrease quantity buttons and remove buttons
+        attachCartButtonsListeners();
+    }
+
+    // Attach event listeners to cart buttons
+    function attachCartButtonsListeners() {
         document.querySelectorAll('.decrease-quantity').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = parseInt(this.getAttribute('data-id'));
@@ -201,21 +211,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to generate and display invoice
+    // Function to place an order and display the order summary
     function placeOrder(cart) {
-        if (cart.length === 0) {
-            showPopup('Your cart is empty.');
-            return;
-        }
-
-        const invoice = generateInvoice(cart);
-        alert(invoice);
-
-        // Clear the cart
-        localStorage.removeItem('cart');
-        updateCart();
+        localStorage.removeItem('cart'); // Clear the cart after placing order
+        updateCart(); // Refresh the cart display
+        showPopup('Order placed successfully!');
+        
+        // Display order summary
+        const orderSummaryContainer = document.createElement('div');
+        orderSummaryContainer.className = 'order-summary';
+        orderSummaryContainer.innerHTML = `
+            <h2>Order Summary</h2>
+            ${cart.map(item => `
+                <p>${item.name} - Quantity: ${item.quantity} - Price: $${item.price.toFixed(2)} - Tax: $${(item.price * 0.12).toFixed(2)} - Total: $${((item.price + (item.price * 0.12)) * item.quantity).toFixed(2)}</p>
+            `).join('')}
+            <p><strong>Total Paid: $${cart.reduce((total, item) => total + (item.price + (item.price * 0.12)) * item.quantity, 0).toFixed(2)}</strong></p>
+        `;
+        document.body.appendChild(orderSummaryContainer);
     }
 
-    // Fetch products when the page is loaded
-    fetchProducts();
+    // Fetch and display products when the page loads
+    fetchAndDisplayContent('products', sections.products);
 });
