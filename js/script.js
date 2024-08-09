@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const sections = {
         home: 'json/home.json',
-        products: 'products.json'
+        products: 'products.json',
+        cart: 'cart.json'
     };
 
     function fetchAndDisplayContent(sectionId, fileName) {
@@ -39,29 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initially show the home section
     fetchAndDisplayContent('home', sections.home);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Section visibility handling
-    const sections = document.querySelectorAll('main > section');
-    const navLinks = document.querySelectorAll('nav a');
-
-    function showSection(id) {
-        sections.forEach(section => {
-            section.style.display = (section.id === id) ? 'block' : 'none';
-        });
-    }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const targetId = this.getAttribute('data-target');
-            showSection(targetId);
-        });
-    });
-
-    // Initialize by showing the 'home' section
-    showSection('home');
 
     // Function to fetch and display products
     async function fetchProducts() {
@@ -120,24 +98,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
 
+    // Function to fetch and update cart data
+    async function fetchCart() {
+        try {
+            const response = await fetch('cart.json');
+            if (!response.ok) throw new Error('Network response was not ok');
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching cart:', error);
+            return [];
+        }
+    }
+
+    async function updateCartData(cart) {
+        try {
+            const response = await fetch('cart.json', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(cart)
+            });
+            if (!response.ok) throw new Error('Network response was not ok');
+        } catch (error) {
+            console.error('Error updating cart data:', error);
+        }
+    }
+
     // Function to add a product to the cart
     async function addToCart(productId) {
         try {
-            const response = await fetch('products.json');
-            if (!response.ok) throw new Error('Network response was not ok');
-            const products = await response.json();
+            const productsResponse = await fetch('products.json');
+            if (!productsResponse.ok) throw new Error('Network response was not ok');
+            const products = await productsResponse.json();
             const product = products.find(p => p.id === productId);
+
             if (product) {
-                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let cart = await fetchCart();
                 const existingProduct = cart.find(item => item.id === productId);
-                
+
                 if (existingProduct) {
                     existingProduct.quantity += 1;
                 } else {
                     cart.push({ ...product, quantity: 1 });
                 }
-                
-                localStorage.setItem('cart', JSON.stringify(cart));
+
+                await updateCartData(cart);
                 updateCart();
                 showPopup(`${product.name} added to cart`);
             }
@@ -147,22 +153,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to update the cart display
-    function updateCart() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    async function updateCart() {
+        const cart = await fetchCart();
         const cartContainer = document.getElementById('cart-container');
         const totalPriceElement = document.getElementById('total-price');
         cartContainer.innerHTML = '';
         let totalPrice = 0;
 
         cart.forEach(item => {
-            const tax = item.price * 0.04; // Calculate 04% tax
+            const tax = item.price * 0.12; // Calculate 12% tax
             const itemTotal = (item.price + tax) * item.quantity;
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
             cartItem.innerHTML = `
                 <h3>${item.name}</h3>
                 <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-                <p>Tax: $${tax.toFixed(2)} (04%)</p>
+                <p>Tax: $${tax.toFixed(2)} (12%)</p>
                 <p>Total: $${itemTotal.toFixed(2)}</p>
                 <button data-id="${item.id}" class="decrease-quantity">-</button>
                 <button data-id="${item.id}" class="remove-from-cart">Remove</button>
@@ -202,15 +208,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to change the quantity of a product in the cart
-    function changeQuantity(productId, change) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    async function changeQuantity(productId, change) {
+        let cart = await fetchCart();
         const productIndex = cart.findIndex(item => item.id === productId);
         if (productIndex !== -1) {
             cart[productIndex].quantity += change;
             if (cart[productIndex].quantity <= 0) {
                 cart.splice(productIndex, 1);
             }
-            localStorage.setItem('cart', JSON.stringify(cart));
+            await updateCartData(cart);
             updateCart();
             const item = cart[productIndex];
             showPopup(`${item ? item.name : 'Product'} quantity updated. Remaining: ${item ? item.quantity : 0}`);
@@ -218,12 +224,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to remove a product from the cart
-    function removeFromCart(productId) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    async function removeFromCart(productId) {
+        let cart = await fetchCart();
         const product = cart.find(item => item.id === productId);
         if (product) {
             cart = cart.filter(item => item.id !== productId);
-            localStorage.setItem('cart', JSON.stringify(cart));
+            await updateCartData(cart);
             updateCart();
             showPopup(`${product.name} removed from cart`);
         }
@@ -231,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to place an order and display the order summary
     function placeOrder(cart) {
-        localStorage.removeItem('cart'); // Clear the cart after placing order
+        updateCartData([]); // Clear the cart after placing order
         updateCart(); // Refresh the cart display
         showPopup('Order placed successfully!');
         
@@ -241,13 +247,10 @@ document.addEventListener('DOMContentLoaded', function() {
         orderSummaryContainer.innerHTML = `
             <h2>Order Summary</h2>
             ${cart.map(item => `
-                <p>${item.name} - Quantity: ${item.quantity} - Price: $${item.price.toFixed(2)} - Tax: $${(item.price * 0.12).toFixed(2)} - Total: $${((item.price + (item.price * 0.04)) * item.quantity).toFixed(2)}</p>
+                <p>${item.name} - Quantity: ${item.quantity} - Price: $${item.price.toFixed(2)} - Tax: $${(item.price * 0.12).toFixed(2)} - Total: $${((item.price + (item.price * 0.12)) * item.quantity).toFixed(2)}</p>
             `).join('')}
-            <p><strong>Total Paid: $${cart.reduce((total, item) => total + (item.price + (item.price * 0.04)) * item.quantity, 0).toFixed(2)}</strong></p>
+            <p>Total Price: $${cart.reduce((total, item) => total + (item.price + (item.price * 0.12)) * item.quantity, 0).toFixed(2)}</p>
         `;
         document.body.appendChild(orderSummaryContainer);
     }
-
-    // Initial fetch and display of products
-    fetchProducts();
 });
