@@ -2,7 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #e0f7fa; 
+    color: #333;
 }
 
 .container {
@@ -12,17 +13,18 @@ body {
 }
 
 header {
-    background: #333;
+    background: #00796b; 
     color: #fff;
     padding-top: 30px;
     min-height: 70px;
-    border-bottom: #0779e4 3px solid;
+    border-bottom: #004d40 4px solid; 
 }
 
 header h1 {
     text-align: center;
     margin: 0;
-    font-size: 24px;
+    font-size: 26px;
+    font-weight: bold;
 }
 
 .iconCart {
@@ -39,13 +41,14 @@ header h1 {
 
 .totalQuantity {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -5px;
+    right: -10px;
     background: red;
     color: white;
     border-radius: 50%;
     padding: 5px;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 section {
@@ -53,10 +56,12 @@ section {
 }
 
 #home, #about, #central-vacuum, #product-list, #shopping-cart {
-    background: #fff;
+    background: #ffffff; 
     padding: 20px;
     border: 1px solid #ddd;
     margin-bottom: 20px;
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 #products, #cart {
@@ -67,36 +72,41 @@ section {
 .product-item, .cart-item {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 15px;
     border-bottom: 1px solid #ddd;
     align-items: center;
+    background-color: #f1f8e9; 
+    border-radius: 8px; 
+    margin-bottom: 10px; 
 }
 
 button {
-    padding: 5px 10px;
-    background-color: #333;
+    padding: 8px 15px;
+    background-color: #00796b; 
     color: #fff;
     border: none;
     cursor: pointer;
+    border-radius: 5px; 
+    transition: background-color 0.3s ease; 
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #004d40; 
 }
 
 .product-item img {
-    width: 100px;
+    width: 120px;
     height: auto;
     margin-right: 20px;
+    border-radius: 5px; 
 }
 
 .cart-item img {
-    width: 50px;
+    width: 60px;
     height: auto;
     margin-right: 20px;
+    border-radius: 5px; 
 }
-
-/* Responsive Styles */
 
 /* Mobile Devices */
 @media only screen and (max-width: 600px) {
@@ -105,17 +115,25 @@ button:hover {
     }
 
     header h1 {
-        font-size: 20px;
+        font-size: 22px;
     }
 
     .iconCart {
         float: none;
-        margin: 10px 0;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
     }
 
     .iconCart img {
         width: 40px;
         height: 40px;
+    }
+
+    .totalQuantity {
+        top: -10px;
+        right: 5px;
+        font-size: 12px;
     }
 
     .product-item, .cart-item {
@@ -124,12 +142,14 @@ button:hover {
     }
 
     .product-item img, .cart-item img {
-        width: 80px;
+        width: 100px;
     }
 
     button {
-        padding: 8px 12px;
-        font-size: 14px;
+        padding: 10px 15px;
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
     }
 }
 
@@ -140,7 +160,7 @@ button:hover {
     }
 
     header h1 {
-        font-size: 22px;
+        font-size: 24px;
     }
 
     .iconCart img {
@@ -149,11 +169,11 @@ button:hover {
     }
 
     .product-item img, .cart-item img {
-        width: 90px;
+        width: 100px;
     }
 
     button {
-        padding: 6px 12px;
+        padding: 8px 15px;
     }
 }
 
@@ -164,7 +184,7 @@ button:hover {
     }
 
     header h1 {
-        font-size: 24px;
+        font-size: 26px;
     }
 
     .iconCart img {
@@ -173,10 +193,10 @@ button:hover {
     }
 
     .product-item img, .cart-item img {
-        width: 100px;
+        width: 120px;
     }
 
     button {
-        padding: 5px 10px;
+        padding: 8px 15px;
     }
 }
