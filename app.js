@@ -78,6 +78,7 @@ function updateCart() {
                 <h4>${item.name}</h4>
                 <p>Quantity: ${item.quantity}</p>
                 <p>Price per item: $${item.price.toFixed(2)}</p>
+                <p>Tax per item: $${item.tax.toFixed(2)}</p>
                 <p>Total with tax: $${(item.totalWithTax * item.quantity).toFixed(2)}</p>
                 <button onclick="decreaseQuantity(${item.id})">-</button>
                 <button onclick="increaseQuantity(${item.id})">+</button>
