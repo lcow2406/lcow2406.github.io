@@ -1,23 +1,22 @@
 [
-    {
-        "id": 1,
-        "name": "SuperClean Pro 2000",
-        "price": 199.99,
-        "image": "images/vacuum1.jpg",
-        "description": "The SuperClean Pro 2000 offers powerful suction and advanced filtration to keep your home spotless. Equipped with a high-efficiency HEPA filter, it captures allergens and fine dust particles, making it ideal for allergy sufferers. Its lightweight design and swivel steering make maneuvering around furniture effortless, while the large dustbin ensures fewer interruptions during cleaning."
-    },
-    {
-        "id": 2,
-        "name": "EcoVac 3000",
-        "price": 149.99,
-        "image": "images/vacuum2.jpg",
-        "description": "The EcoVac 3000 combines efficiency with eco-friendly technology. Featuring a low-energy motor and recyclable materials, it delivers strong suction power while minimizing environmental impact. The bagless design and easy-to-empty dust canister reduce waste, and the built-in UV light helps sanitize surfaces as you clean, providing a deeper clean for your home."
-    },
-    {
-        "id": 3,
-        "name": "TurboClean X500",
-        "price": 249.99,
-        "image": "images/vacuum3.jpg",
-        "description": "The TurboClean X500 is designed for those who demand top performance. Its turbo-charged motor delivers superior suction power, and the multi-surface brush roll effortlessly transitions from carpets to hardwood floors. With advanced cyclonic technology, it maintains peak performance and reduces dust clouding. The included pet hair attachment and washable filters make it perfect for homes with pets."
-    }
+    {"id": 1, "name": "Barbeque Nation", "price": 25.99, "image": "images/special1.jpg"},
+    {"id": 2, "name": "Grilled Delight", "price": 19.99, "image": "images/special2.jpg"},
+    {"id": 3, "name": "BBQ Ribs", "price": 29.99, "image": "images/special3.jpg"},
+    {"id": 4, "name": "Chicken BBQ", "price": 24.99, "image": "images/special4.jpg"},
+    {"id": 5, "name": "Veg BBQ", "price": 18.99, "image": "images/special5.jpg"},
+    {"id": 6, "name": "Spicy BBQ Wings", "price": 21.99, "image": "images/special6.jpg"},
+    {"id": 7, "name": "BBQ Sausages", "price": 23.99, "image": "images/special7.jpg"},
+    {"id": 8, "name": "BBQ Corn", "price": 17.99, "image": "images/special8.jpg"},
+    {"id": 9, "name": "BBQ Fish", "price": 26.99, "image": "images/special9.jpg"},
+    {"id": 10, "name": "BBQ Beef", "price": 27.99, "image": "images/special10.jpg"},
+    {"id": 11, "name": "BBQ Pulled Pork", "price": 22.99, "image": "images/special11.jpg"},
+    {"id": 12, "name": "BBQ Brisket", "price": 28.99, "image": "images/special12.jpg"},
+    {"id": 13, "name": "BBQ Chicken Wings", "price": 20.99, "image": "images/special13.jpg"},
+    {"id": 14, "name": "BBQ Lamb Chops", "price": 30.99, "image": "images/special14.jpg"},
+    {"id": 15, "name": "BBQ Tofu Skewers", "price": 19.99, "image": "images/special15.jpg"},
+    {"id": 16, "name": "BBQ Shrimp", "price": 27.99, "image": "images/special16.jpg"},
+    {"id": 17, "name": "BBQ Mushroom Skewers", "price": 16.99, "image": "images/special17.jpg"},
+    {"id": 18, "name": "BBQ Pineapple", "price": 15.99, "image": "images/special18.jpg"},
+    {"id": 19, "name": "BBQ Veggie Burger", "price": 18.99, "image": "images/special19.jpg"},
+    {"id": 20, "name": "BBQ Turkey Legs", "price": 24.99, "image": "images/special20.jpg"}
 ]
