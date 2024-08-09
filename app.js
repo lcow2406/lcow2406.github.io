@@ -1,5 +1,3 @@
-// Aliya
-
 let cart = [];
 const taxRate = 0.04; // 4% tax rate
 
