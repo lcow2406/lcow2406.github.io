@@ -84,6 +84,7 @@ section {
 /* Headings styles */
 h1, h2, h3, h4, h5, h6 {
     font-size: 1.5em;
+    margin: 10px 0;
 }
 
 h2 {
