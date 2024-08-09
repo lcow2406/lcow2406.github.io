@@ -36,7 +36,9 @@ fetch('products.json')
                 <img src="${product.image}" alt="${product.name}">
                 <div>
                     <h3>${product.name}</h3>
-                    <p>Price: $${(product.price * (1 + taxRate)).toFixed(2)}</p>
+                    <p>Price: $${product.price.toFixed(2)}</p>
+                    <p>Tax: $${(product.price * taxRate).toFixed(2)}</p>
+                    <p>Total with Tax: $${(product.price * (1 + taxRate)).toFixed(2)}</p>
                 </div>
                 <button onclick="addToCart(${product.id})">Add to Cart</button>
             `;
@@ -51,13 +53,16 @@ function addToCart(productId) {
         .then(response => response.json())
         .then(products => {
             const product = products.find(p => p.id === productId);
-            const taxIncludedPrice = product.price * (1 + taxRate);
             const existingProduct = cart.find(item => item.id === productId);
             if (existingProduct) {
                 existingProduct.quantity += 1;
-                existingProduct.price = taxIncludedPrice; // Update price with tax
             } else {
-                cart.push({ ...product, quantity: 1, price: taxIncludedPrice });
+                cart.push({ 
+                    ...product, 
+                    quantity: 1, 
+                    tax: product.price * taxRate, 
+                    totalWithTax: product.price * (1 + taxRate) 
+                });
             }
             updateCart();
         })
@@ -76,8 +81,10 @@ function updateCart() {
             <div>
                 <h4>${item.name}</h4>
                 <p>Quantity: ${item.quantity}</p>
-                <p>Price per item (with tax): $${item.price.toFixed(2)}</p>
-                <p>Total: $${(item.price * item.quantity).toFixed(2)}</p>
+                <p>Price per item: $${item.price.toFixed(2)}</p>
+                <p>Tax per item: $${item.tax.toFixed(2)}</p>
+                <p>Total with tax: $${item.totalWithTax.toFixed(2)}</p>
+                <p>Total for ${item.quantity} items: $${(item.totalWithTax * item.quantity).toFixed(2)}</p>
                 <button onclick="decreaseQuantity(${item.id})">-</button>
                 <button onclick="increaseQuantity(${item.id})">+</button>
                 <button onclick="removeFromCart(${item.id})">Remove</button>
@@ -131,38 +138,23 @@ function placeOrder() {
 
     let totalAmount = 0;
     let totalItems = 0;
+    let totalTax = 0;
 
     cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
+        const itemTotal = item.totalWithTax * item.quantity;
         totalAmount += itemTotal;
         totalItems += item.quantity;
+        totalTax += item.tax * item.quantity;
     });
 
     const summaryMessage = `
         Order placed successfully!\n
         Total Products: ${totalItems}\n
+        Total Tax: $${totalTax.toFixed(2)}\n
         Total Amount (with 4% tax): $${totalAmount.toFixed(2)}
     `;
 
     alert(summaryMessage);
-
-    const invoiceContent = `
-    Thanks for shopping at Aliya's Central Vacuum Store!
-    
-    Order Summary:
-    -----------------------------------
-    ${cart.map(item => `${item.name} - Quantity: ${item.quantity}, Price (with tax): $${item.price.toFixed(2)}, Total: $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
-    -----------------------------------
-    Total Amount (with 4% tax): $${totalAmount.toFixed(2)}
-    `;
-
-    const blob = new Blob([invoiceContent], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'invoice.txt';
-    a.click();
-    window.URL.revokeObjectURL(url);
 
     // Clear cart after order is placed
     cart = [];
